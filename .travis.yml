@@ -20,7 +20,9 @@ jobs:
       before_install: 
       - chmod +x $TRAVIS_BUILD_DIR/arm/scripts/buildBoardsManagerPackage.sh
 
-      script: $TRAVIS_BUILD_DIR/arm/scripts/buildBoardsManagerPackage.sh
+      script:
+      - cd $TRAVIS_BUILD_DIR/arm/scripts
+      - ./buildBoardsManagerPackage.sh
          
       notifications:
         email:
