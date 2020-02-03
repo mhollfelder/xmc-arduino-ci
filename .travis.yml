@@ -20,7 +20,7 @@ jobs:
       before_install:
 
       script:
-         - ./scripts/buildBoardsManagerPackage.sh
+         - .arm/scripts/buildBoardsManagerPackage.sh
          
       notifications:
         email:
