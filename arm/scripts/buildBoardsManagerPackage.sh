@@ -1,6 +1,7 @@
 # Definitions of the URIs for the release
 REPOSITORY_RELEASE_URL="https://github.com/mhollfelder/xmc-arduino-ci/releases/download"
 REPO_API_URL="https://api.github.com/repos/mhollfelder/xmc-arduino-ci/releases"
+REPO_UPLOAD_URL="https://uploads.github.com/repos/mhollfelder/xmc-arduino-ci/releases"
 JSON_URI_REPO="https://github.com/mhollfelder/xmc-arduino-ci/releases/download"
 
 # Extract next version from platform.txt
@@ -161,12 +162,8 @@ echo --data "$(generate_post_data)"
 echo "Creating the new release"
 curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" "$REPO_API_URL"
 
-echo "$REPO_API_URL/${visiblever}/assets/?name=$package_name.zip"
-
 echo "Uploading the package"
-curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" "$REPO_API_URL/${visiblever}/assets/?name=$package_name.zip"
-
-
+curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" "$REPO_UPLOAD_URL/${visiblever}/assets?name=$package_name.zip"
 
 popd
 popd
