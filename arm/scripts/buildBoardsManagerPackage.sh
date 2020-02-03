@@ -3,8 +3,6 @@ REPOSITORY_RELEASE_URL="https://github.com/mhollfelder/xmc-arduino-ci/releases/d
 REPO_API_URL="https://api.github.com/repos/mhollfelder/xmc-arduino-ci/releases"
 JSON_URI_REPO="https://github.com/mhollfelder/xmc-arduino-ci/releases/download"
 
-CI_GITHUB_API_KEY="b7b55eaa9e14d4856f55c0cb8c813e9a7710f2f6"
-
 # Extract next version from platform.txt
 next=`sed -n -E 's/version=([0-9.]+)/\1/p' ../platform.txt`
 
