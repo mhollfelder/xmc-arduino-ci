@@ -101,7 +101,7 @@ cat $srcdir/scripts/package_infineon_index.template.json | \
 
 curl_gh_token_arg=()
 if [ ! -z "$CI_GITHUB_API_KEY" ]; then
-    curl_gh_token_arg=(-H "Authorization: token $CI_GITHUB_API_ENVIRONMENT")
+    curl_gh_token_arg=(-H "Authorization: token 184e963872900784cb43aad2e0dba3479f1b39af")
 fi
 
 # Get previous release name
