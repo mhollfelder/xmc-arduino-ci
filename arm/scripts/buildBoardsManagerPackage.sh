@@ -95,12 +95,6 @@ if [ -z "$is_nightly" ]; then
         .packages[0].platforms[0].checksum = \"SHA-256:$sha\""
 fi
 
-echo $srcdir
-echo "SRCDIR"
-ls $srcdir
-
-cat $srcdir/scripts/package_infineon_index.template.json
-
 cat $srcdir/scripts/package_infineon_index.template.json | \
     jq "$jq_arg" > package_infineon_index.json
 
@@ -112,6 +106,8 @@ fi
 
 # Get previous release name
 curl --silent "${curl_gh_token_arg[@]}" "$REPO_API_URL" > releases.json
+cat releases.json
+
 # Previous final release (prerelase == false)
 prev_release=$(jq -r '. | map(select(.draft == false and .prerelease == false)) | sort_by(.created_at | - fromdateiso8601) | .[0].tag_name' releases.json)
 # Previous release (possibly a pre-release)
