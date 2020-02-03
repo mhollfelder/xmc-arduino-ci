@@ -159,10 +159,10 @@ echo --data "$(generate_post_data)"
 
 
 echo "Creating the new release"
-curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" https://api.github.com/repos/Infineon/XMC-for-Arduino/releases
+curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" $REPO_API_URL
 
 echo "Uploading the package"
-curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" $REPO_API_URL/$base_ver/assets/?name=$package_name.zip
+curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" $REPO_API_URL/$base_ver/assets?name=$package_name.zip
 
 popd
 popd
