@@ -95,6 +95,9 @@ if [ -z "$is_nightly" ]; then
         .packages[0].platforms[0].checksum = \"SHA-256:$sha\""
 fi
 
+ls ./
+ls $srcdir
+
 cat $srcdir/scripts/package_infineon_index.template.json | \
     jq "$jq_arg" > package_infineon_index.json
 
