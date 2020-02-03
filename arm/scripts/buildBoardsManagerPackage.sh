@@ -151,6 +151,10 @@ generate_post_data()
 EOF
 }
 
+echo "${curl_gh_token_arg[@]}"
+echo --data "$(generate_post_data)"
+
+
 echo "Creating the new release"
 curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" https://api.github.com/repos/Infineon/XMC-for-Arduino/releases
 
