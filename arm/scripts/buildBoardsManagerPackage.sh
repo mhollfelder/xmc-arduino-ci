@@ -101,10 +101,10 @@ cat $srcdir/scripts/package_infineon_index.template.json | \
 
 curl_gh_token_arg=()
 if [ ! -z "$CI_GITHUB_API_ENVIRONMENT" ]; then
-    curl_gh_token_arg=(-H "Authorization: token AA")
+    curl_gh_token_arg=(-H "Authorization: token $CI_GITHUB_API_ENVIRONMENT")
     echo "Here1"
 fi
-echo $curl_gh_token_arg
+
 echo "${curl_gh_token_arg[@]}"
 
 # Get previous release name
