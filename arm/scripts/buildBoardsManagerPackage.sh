@@ -99,6 +99,8 @@ echo $srcdir
 echo "SRCDIR"
 ls $srcdir
 
+cat $srcdir/scripts/package_infineon_index.template.json
+
 cat $srcdir/scripts/package_infineon_index.template.json | \
     jq "$jq_arg" > package_infineon_index.json
 
