@@ -182,7 +182,7 @@ generate_post_data()
   "tag_name": "${visiblever}",
   "target_commitish": "master",
   "name": "Nightly release of version ${visiblever}",
-  "body": "#This nightly release is based on Infineon/XMC-for-Arduino@${commit}\nClick [here]() to see the changes included with this release!",
+  "body": "## This nightly release is based on Infineon/XMC-for-Arduino@${commit}\nClick [here]() to see the changes included with this release!",
   "draft": false,
   "prerelease": true
 }
@@ -200,11 +200,12 @@ echo "Output reply from release"
 cat reply_release.json
 
 asset_uri=$(jq -r '. | .upload_url' reply_release.json)
+asset_uri=`echo $asset_uri | sed -e '(\{[^}]+\})'`
 
 echo "Asset URI is $asset_uri"
 
 echo "Uploading the package"
-curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" "${asset_uri}?name=$package_name.zip"
+curl --silent "${curl_gh_token_arg[@]}" -H "Content-Type: application/octet-stream" --data-binary "$package_name.zip" "${asset_uri}?name=$package_name.zip"
 
 popd
 popd
