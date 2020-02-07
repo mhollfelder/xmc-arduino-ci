@@ -2,7 +2,7 @@
 REPOSITORY_RELEASE_URL="https://github.com/mhollfelder/xmc-arduino-ci/releases/download"
 REPOSITORY_NIGHTLY_URL="https://github.com/mhollfelder/xmc-arduino-ci-nightly/releases/download"
 REPO_API_URL="https://api.github.com/repos/mhollfelder/xmc-arduino-ci/releases"
-REPO_API_NIGHTLY_URL="https://api.github.com/repos/mhollfelder/xmc-arduino-ci-nightly/releases"
+REPO_API_NIGHTLY_URL="https://api.github.com/repos/mhollfelder/xmc-arduino-ci-nightly/releases" 
 
 REPO_UPLOAD_URL="https://uploads.github.com/repos/mhollfelder/xmc-arduino-ci/releases"
 REPO_UPLOAD_NIGHTLY_URL="https://uploads.github.com/repos/mhollfelder/xmc-arduino-ci-nightly/releases"
