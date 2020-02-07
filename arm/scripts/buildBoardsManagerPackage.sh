@@ -166,7 +166,7 @@ new_json=package_infineon_nightly_index.json
 
 set +e
 # Merge the old and new, then drop any obsolete package versions
-python3 ../../../scripts/merge_packages.py $new_json $old_json >tmp && mv tmp $new_json && rm $old_json
+python3 $srcdir/scripts/merge_packages.py $new_json $old_json >tmp && mv tmp $new_json && rm $old_json
 
 # Verify the JSON file can be read, fail if it's not OK
 set -e
@@ -201,7 +201,7 @@ cat reply_release.json
 
 asset_uri=$(jq -r '. | map(select(.draft == false)) | sort_by(.created_at | - fromdateiso8601)  | .[0].assets_url' reply_release.json)
 
-cat $asset_uri
+echo $asset_uri
 
 echo "Uploading the package"
 curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" "${asset_uri}?name=$package_name.zip"
