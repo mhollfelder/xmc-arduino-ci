@@ -21,7 +21,7 @@ next=`sed -n -E 's/version=([0-9.]+)/\1/p' ../platform.txt`
 # Note on if [ $? -ne 0 ]; then
 # Travis CI has problems with $?, see this issue https://github.com/travis-ci/travis-ci/issues/3771 for alternative
 
-ver=`git describe --exact-match`
+ver=`git describe --exact-match` 
 commit=`git rev-parse --short HEAD`
 if [ $? -ne 0 ]; then
     # Not tagged version
