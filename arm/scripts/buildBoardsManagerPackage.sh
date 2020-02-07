@@ -195,13 +195,14 @@ echo --data "$(generate_post_data)"
 
 
 echo "Creating the new release"
-reply_release=`curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" "$REPO_API_NIGHTLY_URL"` > reply_release.json
+curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" "$REPO_API_NIGHTLY_URL" > reply_release.json
 
+echo "Output reply from release"
 cat reply_release.json
 
 asset_uri=$(jq -r '. | map(select(.draft == false)) | sort_by(.created_at | - fromdateiso8601)  | .[0].assets_url' reply_release.json)
 
-echo $asset_uri
+echo "Asset URI is $asset_uri"
 
 echo "Uploading the package"
 curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" "${asset_uri}?name=$package_name.zip"
