@@ -201,12 +201,7 @@ cat reply_release.json
 
 asset_uri=$(jq -r '. | .upload_url' reply_release.json)
 
-if [[ $asset_uri =~ (\{[^}]+\})r ]]; then
-    strresult=${BASH_REMATCH[1]}
-else
-    echo "Unable to parse correct upload string"
-    exit 1
-fi
+asset_uri=${asset_uri//\{?name,label\}/}
 
 echo "Asset URI is $asset_uri"
 
