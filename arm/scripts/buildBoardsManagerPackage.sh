@@ -20,9 +20,8 @@ next=`sed -n -E 's/version=([0-9.]+)/\1/p' ../platform.txt`
 # Figure out how will the package be called
 # Note on if [ $? -ne 0 ]; then
 # Travis CI has problems with $?, see this issue https://github.com/travis-ci/travis-ci/issues/3771 for alternative
-
-ver=`git describe --exact-match` 
 commit=`git rev-parse --short HEAD`
+ver=`git describe --exact-match` 
 if [ $? -ne 0 ]; then
     # Not tagged version
     # Generate nightly package
