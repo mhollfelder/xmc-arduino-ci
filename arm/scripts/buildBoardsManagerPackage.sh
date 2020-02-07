@@ -200,7 +200,13 @@ echo "Output reply from release"
 cat reply_release.json
 
 asset_uri=$(jq -r '. | .upload_url' reply_release.json)
-asset_uri=`echo $asset_uri | sed -e '(\{[^}]+\})'`
+
+if [[ $asset_uri =~ (\{[^}]+\})r ]]; then
+    strresult=${BASH_REMATCH[1]}
+else
+    echo "Unable to parse correct upload string"
+    exit 1
+fi
 
 echo "Asset URI is $asset_uri"
 
