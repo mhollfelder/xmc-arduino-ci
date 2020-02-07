@@ -173,7 +173,7 @@ set -e
 cat $new_json | jq empty
 
 # Get the release notes
-release_notes=$(cat "$srcdir/RELEASE.md")
+# release_notes=$(cat "$srcdir/RELEASE.md")
 
 # Create the release and push it to GitHub
 generate_post_data()
