@@ -199,7 +199,7 @@ curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" "$REPO_AP
 echo "Output reply from release"
 cat reply_release.json
 
-asset_uri=$(jq -r '. | .assets_url' reply_release.json)
+asset_uri=$(jq -r '. | .upload_url' reply_release.json)
 
 echo "Asset URI is $asset_uri"
 
