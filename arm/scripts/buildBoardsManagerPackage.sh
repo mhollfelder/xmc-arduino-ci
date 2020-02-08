@@ -1,3 +1,5 @@
+# Folder structure
+
 # Definitions of the URIs for the release
 REPOSITORY_RELEASE_URL="https://github.com/mhollfelder/xmc-arduino-ci/releases/download"
 REPOSITORY_NIGHTLY_URL="https://github.com/mhollfelder/xmc-arduino-ci-nightly/releases/download"
@@ -49,10 +51,6 @@ package_name=XMC_IFX_$visiblever
 echo "Version: $visiblever ($ver)"
 echo "Package name: $package_name"
 
-
-### Continue with build script
-
-
 # Set REMOTE_URL environment variable to the address where the package will be
 # available for download. This gets written into package json file.
 if [ -z "$REMOTE_URL" ]; then
@@ -90,7 +88,7 @@ EOF
 # Also include all files which are ignored by git
 git ls-files --other --directory >> exclude.txt
 # Now copy files to $outdir
-rsync -a --exclude-from 'exclude.txt' $srcdir/ $outdir/
+rsync -a --exclude-from 'exclude.txt' $rootdir/ $outdir/
 rm exclude.txt
 
 # For compatibility, on OS X we need GNU sed which is usually called 'gsed'
@@ -213,7 +211,6 @@ echo "Asset URI is $asset_uri"
 echo "Uploading the package"
 curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" "${asset_uri}?name=$package_name.zip"
 
-popd
 popd
 
 echo "All done for nightly build"
