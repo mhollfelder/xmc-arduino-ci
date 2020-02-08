@@ -195,9 +195,9 @@ echo "Creating the new release"
 curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" "$REPO_API_NIGHTLY_URL" > reply_release.json
 
 echo "Creating the tag at the repository"
-curl "${curl_gh_token_arg[@]}" https://api.github.com/repos/mhollfelder/xmc-arduino-ci/commits/master > jq -r '. | .sha'
+curl "${curl_gh_token_arg[@]}" https://api.github.com/repos/mhollfelder/xmc-arduino-ci/commits/master | jq -r '. | .sha'
 
-sha_git=`curl --silent "${curl_gh_token_arg[@]}" https://api.github.com/repos/mhollfelder/xmc-arduino-ci/commits/master > jq -r '. | .sha'`
+sha_git=`curl --silent "${curl_gh_token_arg[@]}" https://api.github.com/repos/mhollfelder/xmc-arduino-ci/commits/master | jq -r '. | .sha'`
 echo $sha_git
 
 generate_tag()
