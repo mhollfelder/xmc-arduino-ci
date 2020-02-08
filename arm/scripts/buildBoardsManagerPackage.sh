@@ -210,6 +210,20 @@ EOF
 
 curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_tag)" "https://api.github.com/repos/mhollfelder/xmc-arduino-ci/git/tags"
 
+refs/tags/
+
+generate_tag()
+{
+  cat <<EOF
+{
+  "ref": "refs/heads/featureA",
+  "sha": "${sha_git}"
+}
+EOF
+}
+
+curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_tag)" "https://api.github.com/repos/mhollfelder/xmc-arduino-ci/git/refs"
+
 echo "Output reply from release"
 cat reply_release.json
 
