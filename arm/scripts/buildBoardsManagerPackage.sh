@@ -106,7 +106,7 @@ ls ./
 echo $package_name
 #zip -qr $package_name.zip $package_name
 curl https://github.com/Infineon/Assets/blob/master/Pictures/2%20blocks%20of%20code.png -- zipped_pic.png
-zip -q $package_name.zip ./zipped_pic.png
+zip -q $package_name.zip ./zipped_pic.png 
 rm -rf $package_name
 
 # Calculate SHA sum and size
