@@ -181,7 +181,7 @@ generate_post_data()
   "tag_name": "${visiblever}",
   "target_commitish": "master",
   "name": "Nightly release of version ${visiblever}",
-  "body": "## This nightly release is based on Infineon/XMC-for-Arduino@${commit}\nClick [here](https://github.com/mhollfelder/xmc-arduino-ci/compare/${visiblever}...${base_ver}) to see the changes included with this release!",
+  "body": "## This nightly release is based on Infineon/XMC-for-Arduino@${commit}\nClick [here](https://github.com/mhollfelder/xmc-arduino-ci/compare/${base_ver}...${visiblever}) to see the changes included with this release!",
   "draft": false,
   "prerelease": true
 }
