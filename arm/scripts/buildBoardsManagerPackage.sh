@@ -136,7 +136,6 @@ fi
 
 # Get previous release name
 curl --silent "${curl_gh_token_arg[@]}" "$REPO_API_NIGHTLY_URL" > releases.json
-cat releases.json
 
 # Previous final release (prerelase == false)
 prev_release=$(jq -r '. | map(select(.draft == false and .prerelease == false)) | sort_by(.created_at | - fromdateiso8601) | .[0].tag_name' releases.json)
@@ -182,7 +181,7 @@ generate_post_data()
   "tag_name": "${visiblever}",
   "target_commitish": "master",
   "name": "Nightly release of version ${visiblever}",
-  "body": "## This nightly release is based on Infineon/XMC-for-Arduino@${commit}\nClick [here](https://github.com/mhollfelder/xmc-arduino-ci-nightly/compare/${visiblever}...${base_ver}) to see the changes included with this release!",
+  "body": "## This nightly release is based on Infineon/XMC-for-Arduino@${commit}\nClick [here](https://github.com/mhollfelder/xmc-arduino-ci/compare/${visiblever}...${base_ver}) to see the changes included with this release!",
   "draft": false,
   "prerelease": true
 }
