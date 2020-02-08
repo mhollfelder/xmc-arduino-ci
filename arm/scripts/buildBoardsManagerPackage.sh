@@ -70,11 +70,11 @@ if [ -z "$PKG_URL" ]; then
 fi
 echo "Package: $PKG_URL"
 
-pushd ..
 # Create directory for the package
 srcdir=$PWD
-outdir=$srcdir/package/versions/$visiblever/$package_name
-rm -rf $srcdir/package/versions/$visiblever
+rootdir=$srcdir/..
+outdir=$rootdir/package/versions/$visiblever/$package_name
+rm -rf $rootdir/package/versions/$visiblever
 mkdir -p $outdir
 
 # Some files should be excluded from the package
@@ -101,7 +101,7 @@ else
 fi
 
 # Zip the package
-pushd $srcdir/package/versions/$visiblever
+pushd $rootdir/package/versions/$visiblever
 ls ./
 echo "Making $package_name.zip"
 ls ./
@@ -131,7 +131,7 @@ if [ -z "$is_nightly" ]; then
         .packages[0].platforms[0].checksum = \"SHA-256:$sha\""
 fi
 
-cat $srcdir/scripts/package_infineon_index.template.json | \
+cat $rootdir/scripts/package_infineon_index.template.json | \
     jq "$jq_arg" > package_infineon_nightly_index.json
 
 curl_gh_token_arg=()
@@ -170,7 +170,7 @@ new_json=package_infineon_nightly_index.json
 
 set +e
 # Merge the old and new, then drop any obsolete package versions
-python3 $srcdir/scripts/merge_packages.py $new_json $old_json >tmp && mv tmp $new_json && rm $old_json
+python3 $rootdir/scripts/merge_packages.py $new_json $old_json >tmp && mv tmp $new_json && rm $old_json
 
 # Verify the JSON file can be read, fail if it's not OK
 set -e
