@@ -102,13 +102,7 @@ fi
 pushd $rootdir/package/versions/$visiblever
 ls ./
 echo "Making $package_name.zip"
-ls ./
-echo $package_name
-#zip -qr $package_name.zip $package_name
-ls ./ --all
-
-#zip -q $package_name.zip $rootdir/boards.txt
-tar -zcf $package_name.zip $rootdir/boards.txt
+zip -qr $package_name.zip $package_name
 rm -rf $package_name
 
 # Calculate SHA sum and size
@@ -212,9 +206,7 @@ asset_uri=${asset_uri//\{?name,label\}/}
 echo "Asset URI is $asset_uri"
 
 echo "Uploading the package"
-curl --silent "${curl_gh_token_arg[@]}" --data-binary "$rootdir/boards.txt" -H "Content-Type: application/octet-stream" "${asset_uri}?name=$package_name.zip"
-
-#$package_name.zip
+curl --silent "${curl_gh_token_arg[@]}" --data-binary @"$package_name.zip" -H "Content-Type: application/octet-stream" "${asset_uri}?name=$package_name.zip"
 
 popd
 
