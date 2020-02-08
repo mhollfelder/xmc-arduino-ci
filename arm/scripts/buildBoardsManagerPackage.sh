@@ -106,7 +106,9 @@ ls ./
 echo $package_name
 #zip -qr $package_name.zip $package_name
 ls ./ --all
-zip -q $package_name.zip $rootdir/boards.txt
+
+#zip -q $package_name.zip $rootdir/boards.txt
+tar -zcf $package_name.zip $rootdir/boards.txt
 rm -rf $package_name
 
 # Calculate SHA sum and size
