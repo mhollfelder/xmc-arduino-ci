@@ -188,16 +188,12 @@ generate_post_data()
 EOF
 }
 
-echo "${curl_gh_token_arg[@]}"
-echo --data "$(generate_post_data)"
-
 echo "Creating the new release"
 curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" "$REPO_API_NIGHTLY_URL" > reply_release.json
 
 echo "Creating the tag at the repository"
-curl "${curl_gh_token_arg[@]}" https://api.github.com/repos/mhollfelder/xmc-arduino-ci/commits/master | jq -r '. | .sha'
-
 sha_git=`curl --silent "${curl_gh_token_arg[@]}" https://api.github.com/repos/mhollfelder/xmc-arduino-ci/commits/master | jq -r '. | .sha'`
+echo "The SHA of the respective release is:"
 echo $sha_git
 
 generate_tag()
