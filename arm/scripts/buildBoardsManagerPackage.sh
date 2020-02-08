@@ -103,6 +103,8 @@ fi
 pushd $srcdir/package/versions/$visiblever
 ls ./
 echo "Making $package_name.zip"
+ls ./
+echo $package_name
 zip -qr $package_name.zip $package_name
 rm -rf $package_name
 
