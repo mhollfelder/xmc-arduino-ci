@@ -28,7 +28,8 @@ if [ $? -ne 0 ]; then
     date_str=`date +"%Y%m%d"`
     is_nightly=1
     plain_ver="${next}-nightly"
-    ver="${plain_ver}+${date_str}"
+    # Commit only for testing
+    ver="${plain_ver}+${date_str}+${commit}"
 else
     plain_ver=$ver
 fi
