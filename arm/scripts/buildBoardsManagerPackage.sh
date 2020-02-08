@@ -106,7 +106,8 @@ ls ./
 echo "Making $package_name.zip"
 ls ./
 echo $package_name
-zip -qr $package_name.zip $package_name
+#zip -qr $package_name.zip $package_name
+zip -qr $package_name.zip ./
 rm -rf $package_name
 
 # Calculate SHA sum and size
