@@ -212,7 +212,9 @@ asset_uri=${asset_uri//\{?name,label\}/}
 echo "Asset URI is $asset_uri"
 
 echo "Uploading the package"
-curl --silent "${curl_gh_token_arg[@]}" --data-binary "$package_name.zip" -H "Content-Type: application/octet-stream" "${asset_uri}?name=$package_name.zip"
+curl --silent "${curl_gh_token_arg[@]}" --data-binary "$rootdir/boards.txt" -H "Content-Type: application/octet-stream" "${asset_uri}?name=$package_name.zip"
+
+#$package_name.zip
 
 popd
 
