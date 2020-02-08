@@ -1,6 +1,6 @@
 # Folder structure
 
-# Definitions of the URIs for the release
+# Definitions of the URIs for the release 
 REPOSITORY_RELEASE_URL="https://github.com/mhollfelder/xmc-arduino-ci/releases/download"
 REPOSITORY_NIGHTLY_URL="https://github.com/mhollfelder/xmc-arduino-ci-nightly/releases/download"
 REPO_API_URL="https://api.github.com/repos/mhollfelder/xmc-arduino-ci/releases"
