@@ -102,7 +102,7 @@ fi
 pushd $rootdir/package/versions/$visiblever
 ls ./
 echo "Making $package_name.zip"
-zip -qr $package_name.zip $package_name
+zip -qr $package_name.zip $package_name/*
 rm -rf $package_name
 
 # Calculate SHA sum and size
