@@ -191,9 +191,26 @@ EOF
 echo "${curl_gh_token_arg[@]}"
 echo --data "$(generate_post_data)"
 
-
 echo "Creating the new release"
 curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_post_data)" "$REPO_API_NIGHTLY_URL" > reply_release.json
+
+echo "Creating the tag at the repository"
+sha_git=`curl --silent "${curl_gh_token_arg[@]}" https://api.github.com/repos/mhollfelder/xmc-arduino-ci/commits/master > jq -r '. | .sha'`
+echo $sha_git
+
+generate_tag()
+{
+  cat <<EOF
+{
+  "tag": "${visiblever}",
+  "message": "Nightly build reference tag\n",
+  "object": "${sha_git}",
+  "type": "commit"
+}
+EOF
+}
+
+curl --silent "${curl_gh_token_arg[@]}" --data "$(generate_tag)" "https://api.github.com/repos/mhollfelder/xmc-arduino-ci/git/tags"
 
 echo "Output reply from release"
 cat reply_release.json
