@@ -28,7 +28,7 @@ if [ $? -ne 0 ]; then
     date_str=`date +"%Y%m%d"`
     is_nightly=1
     plain_ver="${next}-nightly"
-    ver="${plain_ver}+${commit}+${date_str}"
+    ver="${plain_ver}+${date_str}"
 else
     plain_ver=$ver
 fi
@@ -100,7 +100,8 @@ else
 fi
 
 # Zip the package
-pushd package/versions/$visiblever
+pushd $srcdir/package/versions/$visiblever
+ls ./
 echo "Making $package_name.zip"
 zip -qr $package_name.zip $package_name
 rm -rf $package_name
